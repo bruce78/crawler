@@ -1,5 +1,4 @@
-
-import http.client
+import requests
 import datetime
 import time
 from dateutil.relativedelta import relativedelta
@@ -9,18 +8,8 @@ def fetchData(coin, timeParams):
     headers = {
         "Content-type": "application/json",
     }
-    conn = http.client.HTTPConnection('api.feixiaohao.com')
-    try:
-        # 1531725024000 / 1531725026000
-        conn.request("GET", "/coinhisdata/"+coin+"/"+timeParams, '', headers)
-        response = conn.getresponse()
-        # print(response.status, response.reason, response.info())  #打印读取到的数据
-        if response.status == 200:
-            data = response.read().decode('utf-8')
-            return data
-        return None
-    finally:
-        conn.close()
+    ret = requests.get('http://api.feixiaohao.com/coinhisdata/'+coin+'/'+timeParams,headers)
+    return ret
 
 
 # step 5 minutes

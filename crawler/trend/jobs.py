@@ -1,9 +1,9 @@
 from crawler.trend.services import updateOnePoint, refreshAllData, saveCoinInfo, saveExchangeInfo
 from apscheduler.schedulers.blocking import BlockingScheduler
 
-from crawler.trend.concepts import getAllCoins
-from crawler.info.coinInfo import getCoinInfo
-from crawler.info.exchangeInfo import getExchangeInfos
+from .concepts import getAllCoins
+from ..info.coinInfo import getCoinInfo
+from ..info.exchangeInfo import getExchangeInfos
 
 coins = getAllCoins()
 
@@ -58,14 +58,14 @@ def refreshExchangeInfo():
 
 
 def refreshInfos():
-    refreshCoinInfo()
+    # refreshCoinInfo()
     refreshExchangeInfo()
 
 
 def refreshJob():
-    for oneList in coins:
-        for coin in oneList:
-            refreshAllData(coin)
+    # for oneList in coins:
+    #    for coin in oneList:
+    #        refreshAllData(coin)
 
     refreshInfos()
 
